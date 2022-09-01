@@ -24,13 +24,22 @@
 //		   is not found in the vector.
 // =================================================================
 template <class T>
-int sequentialSearch(const std::vector<T> &v, T key) {
-	for (int i = 0; i < v.size(); i++) {
-		if (v[i] == key) {
-			return i;
+int *sequentialSearch(const std::vector<T> &v, T key)
+{
+	static int arr[2];
+	int comps = 0;
+	arr[0] = -1;
+	for (int i = 0; i < v.size(); i++)
+	{
+		comps++;
+		if (v[i] == key)
+		{
+			arr[0] = i;
+			break;
 		}
 	}
-	return -1;
+	arr[1] = comps;
+	return arr;
 }
 
 // =================================================================
@@ -42,22 +51,34 @@ int sequentialSearch(const std::vector<T> &v, T key) {
 //		   is not found in the vector.
 // =================================================================
 template <class T>
-int binarySearch(const std::vector<T> &v, T key) {
-	int low, high, mid;
+int *binarySearch(const std::vector<T> &v, T key)
+{
+	int low, high, mid, comps;
+	static int arr[2];
+	arr[0] = -1;
 
 	low = 0;
 	high = v.size() - 1;
-	while (low <= high) {
+	while (low <= high)
+	{
 		mid = low + ((high - low) / 2); // mid = (high + low) / 2;
-		if (key == v[mid]) {
-			return mid;
-		} else if (key < v[mid]) {
+		comps++;
+		if (key == v[mid])
+		{
+			arr[0] = mid;
+			break;
+		}
+		else if (key < v[mid])
+		{
 			high = mid - 1;
-		} else {
+		}
+		else
+		{
 			low = mid + 1;
 		}
 	}
-	return -1;
+	arr[1] = comps - 1;
+	return arr;
 }
 
 // =================================================================
@@ -71,18 +92,27 @@ int binarySearch(const std::vector<T> &v, T key) {
 //		   is not found in the vector.
 // =================================================================
 template <class T>
-int binaryRSearch(const std::vector<T> &v, int low, int high, T key) {
+int binaryRSearch(const std::vector<T> &v, int low, int high, T key)
+{
 	int mid;
 
-	if (low > high) {
+	if (low > high)
+	{
 		return -1;
-	} else {
+	}
+	else
+	{
 		mid = low + ((high - low) / 2); // mid = (high + low) / 2;
-		if (key == v[mid]) {
+		if (key == v[mid])
+		{
 			return mid;
-		} else if (key < v[mid]) {
+		}
+		else if (key < v[mid])
+		{
 			return binaryRSearch(v, low, mid - 1, key);
-		} else {
+		}
+		else
+		{
 			return binaryRSearch(v, mid + 1, high, key);
 		}
 	}

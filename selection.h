@@ -22,21 +22,29 @@
 // @param size, the number of elements in the array.
 // =================================================================
 template <class T>
-void selectionSort(T *arr, int size) {
+int selectionSort(T *arr, int size)
+{
 	int pos;
+	int comps = 0;
 
-	for(int i = size - 1; i > 0; i--){
+	for (int i = size - 1; i > 0; i--)
+	{
 		pos = 0;
-		for(int j = 1; j <= i; j++){
-			if(arr[j] > arr[pos]){
+		for (int j = 1; j <= i; j++)
+		{
+			if (arr[j] > arr[pos])
+			{
+				comps++;
 				pos = j;
 			}
 		}
 
-		if (pos != i){
+		if (pos != i)
+		{
 			swap(arr, i, pos);
 		}
 	}
+	return comps;
 }
 
 // =================================================================
@@ -45,21 +53,29 @@ void selectionSort(T *arr, int size) {
 // @param A, a vector of T elements.
 // =================================================================
 template <class T>
-void selectionSort(std::vector<T> &v) {
+int selectionSort(std::vector<T> &v)
+{
 	int pos;
+	int comps = 0;
 
-	for(int i = v.size() - 1; i > 0; i--){
+	for (int i = v.size() - 1; i > 0; i--)
+	{
 		pos = 0;
-		for(int j = 1; j <= i; j++){
-			if(v[j] > v[pos]){
+		for (int j = 1; j <= i; j++)
+		{
+			if (v[j] > v[pos])
+			{
 				pos = j;
 			}
 		}
 
-		if (pos != i){
+		if (pos != i)
+		{
+			comps++;
 			swap(v, i, pos);
 		}
 	}
+	return comps;
 }
 
 #endif /* SELECTION_H */
