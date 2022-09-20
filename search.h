@@ -53,7 +53,7 @@ int *sequentialSearch(const std::vector<T> &v, T key)
 template <class T>
 int *binarySearch(const std::vector<T> &v, T key)
 {
-	int low, high, mid, comps;
+	int low, high, mid, comps = 0;
 	static int arr[2];
 	arr[0] = -1;
 
